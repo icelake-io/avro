@@ -48,7 +48,8 @@ fn schema_name_r() -> &'static Regex {
     SCHEMA_NAME_ONCE.get_or_init(|| {
         Regex::new(
             r"^((?P<namespace>([A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)*)?)\.)?(?P<name>[A-Za-z_][A-Za-z0-9_]*)$",
-        ).unwrap()
+        )
+            .unwrap()
     })
 }
 
@@ -6489,7 +6490,6 @@ mod tests {
 }"#;
 
         assert_eq!(serialized_json, expected_json);
-
         Ok(())
     }
 
@@ -6511,7 +6511,6 @@ mod tests {
 }"#;
 
         assert_eq!(serialized_json, expected_json);
-
         Ok(())
     }
 
