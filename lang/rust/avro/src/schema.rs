@@ -1772,7 +1772,9 @@ impl Parser {
             .get("items")
             .ok_or(Error::GetArrayItemsField)
             .and_then(|items| self.parse(items, enclosing_namespace))
-            .map(Schema::array)
+            .map(|items| {
+                Schema::array_with_attributes(items, self.get_custom_attributes(complex, vec![]))
+            })
     }
 
     /// Parse a `serde_json::Value` representing a Avro map type into a
@@ -1786,7 +1788,9 @@ impl Parser {
             .get("values")
             .ok_or(Error::GetMapValuesField)
             .and_then(|items| self.parse(items, enclosing_namespace))
-            .map(Schema::map)
+            .map(|items| {
+                Schema::map_with_attributes(items, self.get_custom_attributes(complex, vec![]))
+            })
     }
 
     /// Parse a `serde_json::Value` representing a Avro union type into a
